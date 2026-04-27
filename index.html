@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfileMint — Resumes & Portfolios That Open Doors</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+:root {
+  --ink:       #0c0c0b;
+  --paper:     #f8f7f4;
+  --cream:     #f0ede6;
+  --line:      #e2ddd6;
+  --muted:     #9b9690;
+  --mint:      #2ecc8f;
+  --mint-pale: #e8f9f1;
+  --mint-dark: #1fa86e;
+  --amber:     #f5a623;
+  --serif:     'Instrument Serif', Georgia, serif;
+  --display:   'Syne', sans-serif;
+  --body:      'DM Sans', sans-serif;   
+  --r:         16px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.65;overflow-x:hidden}
+
+/* ─── CURSOR ─── */
+.cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--mint);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .2s,height .2s,opacity .2s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--mint);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease;opacity:.5}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(248,247,244,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-mark{width:34px;height:34px;border-radius:9px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.nav-logo-mark svg{width:18px;height:18px}
+.nav-wordmark{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.nav-wordmark span{color:var(--mint-dark)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-pill{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--display);font-size:.82rem;font-weight:600;padding:.55rem 1.3rem;border-radius:100px;background:var(--ink);color:var(--paper);text-decoration:none;transition:background .2s,transform .15s}
+.nav-pill:hover{background:var(--mint-dark);transform:translateY(-1px)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:8rem 5% 5rem;position:relative;overflow:hidden}
+.hero-bg-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.07) 1px,transparent 1px);background-size:32px 32px;z-index:0}
+.hero-bg-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(46,204,143,.08) 0%,transparent 65%);top:-200px;right:-200px;z-index:0;pointer-events:none}
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--display);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-dark);background:var(--mint-pale);padding:.38rem 1rem;border-radius:100px;margin-bottom:2rem;border:1px solid rgba(46,204,143,.2)}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--mint);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.6rem);line-height:1.08;letter-spacing:-.01em;margin-bottom:1.6rem;color:var(--ink)}
+.hero h1 .line-italic{font-style:italic;color:var(--mint-dark)}
+.hero h1 .line-stroke{-webkit-text-stroke:1.5px var(--ink);color:transparent}
+.hero-desc{font-size:1.08rem;color:#666;line-height:1.8;max-width:480px;margin-bottom:2.5rem}
+.hero-trust{display:flex;align-items:center;gap:1.4rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.ht-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:500;color:#555}
+.ht-check{width:18px;height:18px;border-radius:50%;background:var(--mint-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ht-check svg{width:9px;height:9px}
+.hero-cta-row{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--display);font-size:.95rem;font-weight:700;padding:.9rem 2.2rem;border-radius:100px;background:var(--ink);color:var(--paper);text-decoration:none;border:none;cursor:pointer;transition:all .22s}
+.btn-primary:hover{background:var(--mint-dark);transform:translateY(-2px);box-shadow:0 10px 28px rgba(31,168,110,.3)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--display);font-size:.9rem;font-weight:600;padding:.88rem 1.8rem;border-radius:100px;background:transparent;color:var(--ink);border:1.5px solid var(--line);text-decoration:none;cursor:pointer;transition:all .22s}
+.btn-secondary:hover{border-color:var(--ink);transform:translateY(-2px)}
+.hero-right{position:relative;z-index:1}
+
+/* ─── HERO ILLUSTRATION ─── */
+.hero-illus-wrap{position:relative;width:100%}
+.hero-scene-svg{width:100%;height:auto;overflow:visible}
+.hero-float-1{animation:floatY 3.5s ease-in-out infinite}
+.hero-float-2{animation:floatY 3.5s ease-in-out infinite .9s}
+.hero-float-3{animation:floatY 4s ease-in-out infinite 1.6s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+/* ─── TICKER ─── */
+.ticker-wrap{background:var(--ink);padding:.85rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;gap:2.5rem;animation:ticker 34s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--display);font-size:.72rem;font-weight:600;color:#666;flex-shrink:0;letter-spacing:.02em}
+.tick-item strong{color:var(--mint)}
+.tick-sep{color:#333;flex-shrink:0}
+
+/* ─── SECTIONS ─── */
+.sec{padding:7rem 5%}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-label{font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mint-dark);margin-bottom:.9rem}
+.sec-h{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.1rem}
+.sec-h em{font-style:italic;color:var(--mint-dark)}
+.sec-p{font-size:1.02rem;color:#666;line-height:1.8;max-width:520px}
+
+/* ─── WHY RESUME ─── */
+.why-resume{background:var(--ink);color:var(--paper)}
+.why-resume .sec-label{color:var(--mint)}
+.why-resume .sec-h{color:var(--paper)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;margin-top:4rem;background:#1e1e1c;border:1px solid #1e1e1c;border-radius:20px;overflow:hidden}
+.why-card{background:#111110;padding:2.6rem 2.2rem;transition:background .3s;cursor:default}
+.why-card:hover{background:#171716}
+.why-icon{width:48px;height:48px;border-radius:12px;background:#1e1e1c;border:1px solid #2a2a28;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem}
+.why-stat{font-family:var(--serif);font-size:2.6rem;font-weight:400;color:var(--mint);line-height:1;margin-bottom:.5rem}
+.why-card h3{font-family:var(--display);font-size:1.05rem;font-weight:700;color:var(--paper);margin-bottom:.7rem}
+.why-card p{font-size:.87rem;color:#888;line-height:1.7}
+
+/* ─── IMPORTANCE VISUAL SECTION ─── */
+.importance-sec{background:var(--cream);overflow:hidden}
+.importance-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.imp-visual{position:relative}
+.recruiter-sim{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.09)}
+.rs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.rs-title{font-family:var(--display);font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.rs-timer{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--mint-dark)}
+.rs-progress{height:4px;background:var(--line);border-radius:2px;margin-bottom:1.6rem;overflow:hidden}
+.rs-progress-bar{height:100%;width:0%;background:var(--mint);border-radius:2px;animation:drain 7s linear infinite}
+@keyframes drain{0%{width:100%}100%{width:0%}}
+.rs-stack{display:flex;flex-direction:column;gap:.6rem}
+.rs-resume{background:var(--cream);border:1.5px solid var(--line);border-radius:10px;padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
+.rs-resume.active{background:var(--mint-pale);border-color:rgba(46,204,143,.35);box-shadow:0 4px 16px rgba(46,204,143,.15)}
+.rs-resume.rejected{opacity:.35}
+.rsr-left{display:flex;align-items:center;gap:.8rem}
+.rsr-dot{width:32px;height:32px;border-radius:8px;background:var(--line);flex-shrink:0}
+.rsr-lines{display:flex;flex-direction:column;gap:5px}
+.rsr-line{height:6px;border-radius:3px;background:var(--line)}
+.rsr-line.dark{background:#ccc;width:80px}
+.rsr-line.light{width:55px}
+.rsr-status{font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.status-read{color:var(--mint-dark)}
+.status-skip{color:#ccc}
+.imp-float{position:absolute;background:var(--ink);color:var(--paper);border-radius:12px;padding:.65rem 1rem;font-size:.75rem;font-weight:600;box-shadow:0 12px 32px rgba(0,0,0,.2);white-space:nowrap}
+.imp-float-tl{top:-12px;left:-12px;animation:floatY 4s ease-in-out infinite}
+.imp-float-br{bottom:-12px;right:-12px;animation:floatY 4s ease-in-out infinite 1.2s}
+.imp-float .mint{color:var(--mint)}
+
+/* ─── PORTFOLIO SECTION ─── */
+.portfolio-sec{background:var(--paper)}
+.portfolio-why{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:5rem}
+.port-visual{position:relative}
+.port-browser{background:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.18)}
+.port-bar{background:#1e1e1c;padding:.7rem 1rem;display:flex;align-items:center;gap:.5rem}
+.port-dots{display:flex;gap:.4rem}
+.port-dot{width:10px;height:10px;border-radius:50%}
+.port-url{flex:1;background:#2a2a28;border-radius:4px;height:22px;margin:0 .8rem;display:flex;align-items:center;padding:0 .6rem}
+.port-url-text{font-size:.6rem;color:#555;font-family:var(--body)}
+.port-screen{padding:1.5rem;background:#111}
+.port-hero-mock{background:linear-gradient(135deg,#1a2e24,#111);border-radius:10px;padding:1.5rem;margin-bottom:.8rem}
+.port-name-mock{font-family:var(--serif);font-size:1.3rem;color:rgba(255,255,255,.9);margin-bottom:.3rem}
+.port-role-mock{font-size:.7rem;color:var(--mint);font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.9rem}
+.port-skills{display:flex;gap:.4rem;flex-wrap:wrap}
+.port-skill-tag{background:rgba(46,204,143,.12);border:1px solid rgba(46,204,143,.2);color:var(--mint);font-size:.62rem;font-family:var(--display);font-weight:600;padding:.2rem .55rem;border-radius:4px;letter-spacing:.04em}
+.port-projects{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.port-proj{background:#1a1a18;border-radius:8px;padding:.8rem;border:1px solid #2a2a28}
+.port-proj-bar{height:6px;border-radius:3px;background:#2a2a28;margin-bottom:.5rem}
+.port-proj-bar.accent{background:var(--mint-dark);width:60%}
+.port-proj-line{height:5px;border-radius:3px;background:#222;margin-bottom:4px}
+.port-proj-line.short{width:50%}
+.port-float-stat{position:absolute;bottom:-14px;right:-14px;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;box-shadow:0 10px 28px rgba(0,0,0,.1);animation:floatY 3.5s ease-in-out infinite}
+.pfs-num{font-family:var(--serif);font-size:1.5rem;color:var(--mint-dark);line-height:1}
+.pfs-label{font-size:.68rem;color:var(--muted);font-weight:500}
+
+/* ─── PROBLEM ─── */
+.problem-sec{background:var(--paper)}
+.prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3.5rem}
+.prob-card{border:1.5px solid var(--line);border-radius:18px;padding:2.4rem 2rem;position:relative;overflow:hidden;transition:all .3s;cursor:default}
+.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.prob-card:hover::before{transform:scaleX(1)}
+.prob-card:hover{border-color:rgba(46,204,143,.3);box-shadow:0 12px 40px rgba(46,204,143,.08);transform:translateY(-3px)}
+.prob-num{font-family:var(--serif);font-size:3rem;font-weight:400;color:var(--line);line-height:1;margin-bottom:.8rem;transition:color .3s}
+.prob-card:hover .prob-num{color:var(--mint-pale)}
+.prob-card h3{font-family:var(--display);font-size:1.05rem;font-weight:700;margin-bottom:.7rem}
+.prob-card p{font-size:.88rem;color:#666;line-height:1.7}
+
+/* ─── INSIGHT STRIP ─── */
+.insight-strip{background:var(--mint);padding:5rem 5%;text-align:center;position:relative;overflow:hidden}
+.is-bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px}
+.is-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.is-quote{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.4rem);font-style:italic;line-height:1.45;color:var(--ink);margin-bottom:1.2rem}
+.is-attr{font-family:var(--display);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(12,12,11,.5)}
+
+/* ─── STATS ROW ─── */
+.stats-row{background:var(--ink);padding:4rem 5%}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:var(--serif);font-size:3rem;line-height:1;color:var(--mint);margin-bottom:.4rem}
+.stat-desc{font-size:.82rem;color:#666;line-height:1.5;font-weight:500}
+.stats-divider{width:1px;background:#1e1e1c;align-self:stretch;margin:auto 0;display:none}
+
+/* ─── SERVICES ─── */
+.services-sec{background:var(--cream)}
+.serv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3.5rem}
+.serv-card{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:2.4rem 2rem;position:relative;overflow:hidden;transition:all .3s}
+.serv-card:hover{border-color:var(--mint);box-shadow:0 16px 44px rgba(46,204,143,.12);transform:translateY(-4px)}
+.serv-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;border:1.5px solid var(--line)}
+.serv-card h3{font-family:var(--display);font-size:1.15rem;font-weight:700;margin-bottom:.7rem}
+.serv-card p{font-size:.88rem;color:#666;line-height:1.7;margin-bottom:1.4rem}
+.serv-tag{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--display);font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mint-dark);background:var(--mint-pale);padding:.28rem .75rem;border-radius:100px}
+.serv-featured{border-color:var(--mint);background:var(--mint-pale)}
+.serv-featured .serv-card-icon{background:var(--mint);border-color:var(--mint)}
+.serv-ribbon{position:absolute;top:1.2rem;right:1.2rem;background:var(--mint);color:var(--ink);font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.24rem .65rem;border-radius:100px}
+
+/* ─── PROCESS ─── */
+.process-sec{background:var(--paper)}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:4rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0,var(--line) 8px,transparent 8px,transparent 16px);z-index:0}
+.process-step{text-align:center;padding:0 1.5rem;position:relative;z-index:1}
+.ps-circle{width:64px;height:64px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);transition:all .3s;position:relative}
+.process-step:hover .ps-circle{background:var(--ink);color:var(--mint);border-color:var(--ink);transform:scale(1.1)}
+.ps-num-overlay{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:var(--mint);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.65rem;font-weight:700;color:var(--ink)}
+.process-step h4{font-family:var(--display);font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.process-step p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* ─── DIFFERENTIATORS ─── */
+.diff-sec{background:var(--ink);color:var(--paper)}
+.diff-sec .sec-label{color:var(--mint)}
+.diff-sec .sec-h{color:var(--paper)}
+.diff-sec .sec-p{color:#888}
+.diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:3.5rem}
+.diff-item{border-left:2px solid #222;padding-left:1.6rem;transition:border-color .25s}
+.diff-item:hover{border-left-color:var(--mint)}
+.diff-n{font-family:var(--serif);font-size:3.2rem;color:var(--mint);line-height:1;margin-bottom:.5rem}
+.diff-item h4{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--paper);margin-bottom:.4rem}
+.diff-item p{font-size:.84rem;color:#777;line-height:1.65}
+
+/* ─── FORM SECTION ─── */
+.form-sec{background:linear-gradient(160deg,var(--ink) 0%,#132b1e 100%);position:relative;overflow:hidden;padding:7rem 5%}
+.form-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(46,204,143,.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.form-left .sec-label{color:var(--mint)}
+.form-left .sec-h{color:var(--paper)}
+.form-left .sec-p{color:#888;margin-bottom:2rem}
+.form-promise{display:flex;flex-direction:column;gap:.8rem}
+.fp-item{display:flex;align-items:center;gap:.8rem;font-size:.85rem;color:#aaa}
+.fp-icon{width:30px;height:30px;border-radius:8px;background:rgba(46,204,143,.1);border:1px solid rgba(46,204,143,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fp-icon svg{width:14px;height:14px}
+.contact-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:2.8rem}
+.form-row{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.4rem}
+.form-row label{font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888}
+.form-input{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:.85rem 1.1rem;font-family:var(--body);font-size:.95rem;color:var(--paper);outline:none;transition:border-color .2s,background .2s;width:100%}
+.form-input::placeholder{color:#555}
+.form-input:focus{border-color:rgba(46,204,143,.5);background:rgba(46,204,143,.04)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+.form-select option{background:#1a2e22;color:#f8f7f4;padding:.5rem}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{width:100%;padding:1rem;border-radius:12px;background:var(--mint);color:var(--ink);font-family:var(--display);font-size:1rem;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:all .22s;margin-top:.5rem}
+.submit-btn:hover{background:var(--mint-dark);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 28px rgba(46,204,143,.3)}
+.form-note{font-size:.75rem;color:#444;text-align:center;margin-top:.9rem}
+.form-success{display:none;text-align:center;padding:3rem 2rem}
+.fs-icon{font-size:3rem;margin-bottom:1rem}
+.fs-title{font-family:var(--serif);font-size:1.6rem;color:var(--paper);margin-bottom:.6rem}
+.fs-sub{font-size:.9rem;color:#888;line-height:1.7}
+
+/* ─── FOOTER ─── */
+footer{background:#080807;padding:2.8rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;border-top:1px solid #141413}
+.footer-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.footer-mark{width:30px;height:30px;border-radius:8px;background:#1a1a18;display:flex;align-items:center;justify-content:center;border:1px solid #2a2a28}
+.footer-mark svg{width:16px;height:16px}
+.footer-name{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--paper)}
+.footer-name span{color:var(--mint)}
+.footer-mid{font-size:.78rem;color:#444;text-align:center;line-height:1.6}
+.footer-right{font-size:.75rem;color:#333}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;padding:8rem 5% 4rem}
+  .hero-right{display:none}
+  .hero-trust{justify-content:center}
+  .hero-cta-row{justify-content:center}
+  .hero-desc{margin:0 auto 2.5rem}
+  .importance-grid,.portfolio-why,.form-grid{grid-template-columns:1fr;gap:3rem}
+  .imp-visual,.port-visual{display:none}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .process-steps::before{display:none}
+  nav .nav-links{display:none}
+}
+@media(max-width:560px){
+  .sec{padding:5rem 5%}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .form-row-2{grid-template-columns:1fr}
+  .contact-form{padding:2rem 1.5rem}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 14L7.5 4L12 10L14.5 7L17 14" stroke="#3ecf8e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="nav-wordmark">Profile<span>Mint</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#why-matters">Why It Matters</a>
+    <a href="#process">How It Works</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-pill">
+    Get Started
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Resume &amp; Portfolio Studio</div>
+    <h1>
+      Your profile is<br>the door. We make<br><span class="line-italic">it open.</span>
+    </h1>
+    <p class="hero-desc">ProfileMint crafts resumes and portfolio sites that cut through the noise — for anyone ready to be seen, shortlisted, and chosen. No matter where you are in your career.</p>
+    <div class="hero-trust">
+      <div class="ht-item">
+        <div class="ht-check"><svg viewBox="0 0 10 10" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+        ATS-optimized
+      </div>
+      <div class="ht-item">
+        <div class="ht-check"><svg viewBox="0 0 10 10" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+        Hiring-first approach
+      </div>
+      <div class="ht-item">
+        <div class="ht-check"><svg viewBox="0 0 10 10" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>
+        48hr turnaround
+      </div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#contact" class="btn-primary">
+        Get a Free Callback
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-illus-wrap">
+      <!-- Main SVG scene illustration -->
+      <svg class="hero-scene-svg" viewBox="0 0 540 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background blobs -->
+        <ellipse cx="420" cy="120" rx="130" ry="110" fill="#e8f9f1" opacity="0.7"/>
+        <ellipse cx="100" cy="380" rx="90" ry="80" fill="#f0ede6" opacity="0.8"/>
+
+        <!-- ── RESUME CARD (left, tilted) ── -->
+        <g transform="rotate(-6 160 260)" filter="url(#shadow1)">
+          <rect x="60" y="140" width="200" height="270" rx="16" fill="white" stroke="#e2ddd6" stroke-width="1.5"/>
+          <!-- Header stripe -->
+          <rect x="60" y="140" width="200" height="52" rx="16" fill="#0c0c0b"/>
+          <rect x="60" y="174" width="200" height="18" fill="#0c0c0b"/>
+          <!-- Avatar circle -->
+          <circle cx="93" cy="166" r="16" fill="#2ecc8f"/>
+          <circle cx="93" cy="162" r="6" fill="white" opacity="0.3"/>
+          <!-- Name lines in header -->
+          <rect x="117" y="158" width="80" height="8" rx="4" fill="white"/>
+          <rect x="117" y="172" width="55" height="6" rx="3" fill="#2ecc8f"/>
+          <!-- Section: Experience -->
+          <rect x="78" y="210" width="44" height="6" rx="3" fill="#2ecc8f"/>
+          <rect x="78" y="224" width="160" height="5" rx="2.5" fill="#e2ddd6"/>
+          <rect x="78" y="234" width="130" height="5" rx="2.5" fill="#e2ddd6"/>
+          <rect x="78" y="244" width="145" height="5" rx="2.5" fill="#e2ddd6"/>
+          <rect x="78" y="254" width="110" height="5" rx="2.5" fill="#e2ddd6"/>
+          <!-- Section: Skills -->
+          <rect x="78" y="272" width="34" height="6" rx="3" fill="#2ecc8f"/>
+          <rect x="78" y="286" width="52" height="18" rx="9" fill="#e8f9f1" stroke="#2ecc8f" stroke-width="1"/>
+          <rect x="78" y="286" width="52" height="18" rx="9" fill="none"/>
+          <rect x="138" y="286" width="48" height="18" rx="9" fill="#e8f9f1" stroke="#2ecc8f" stroke-width="1"/>
+          <rect x="194" y="286" width="44" height="18" rx="9" fill="#e8f9f1" stroke="#2ecc8f" stroke-width="1"/>
+          <!-- Skill text marks -->
+          <rect x="88" y="293" width="32" height="4" rx="2" fill="#1fa86e"/>
+          <rect x="147" y="293" width="30" height="4" rx="2" fill="#1fa86e"/>
+          <rect x="203" y="293" width="26" height="4" rx="2" fill="#1fa86e"/>
+          <!-- Section: Education -->
+          <rect x="78" y="318" width="48" height="6" rx="3" fill="#2ecc8f"/>
+          <rect x="78" y="332" width="150" height="5" rx="2.5" fill="#e2ddd6"/>
+          <rect x="78" y="342" width="120" height="5" rx="2.5" fill="#e2ddd6"/>
+          <rect x="78" y="352" width="100" height="5" rx="2.5" fill="#e2ddd6"/>
+          <!-- ATS badge -->
+          <rect x="170" y="374" width="76" height="22" rx="11" fill="#0c0c0b"/>
+          <rect x="180" y="381" width="8" height="8" rx="4" fill="#2ecc8f"/>
+          <rect x="194" y="383" width="40" height="4" rx="2" fill="white"/>
+        </g>
+
+        <!-- ── PORTFOLIO CARD (right, tilted other way) ── -->
+        <g transform="rotate(5 370 250)" filter="url(#shadow2)">
+          <rect x="270" y="130" width="210" height="280" rx="16" fill="#0c0c0b" stroke="#1e1e1c" stroke-width="1.5"/>
+          <!-- Browser top bar -->
+          <rect x="270" y="130" width="210" height="38" rx="16" fill="#1a1a18"/>
+          <rect x="270" y="150" width="210" height="18" fill="#1a1a18"/>
+          <circle cx="290" cy="149" r="5" fill="#ff5f57"/>
+          <circle cx="305" cy="149" r="5" fill="#febc2e"/>
+          <circle cx="320" cy="149" r="5" fill="#28c840"/>
+          <rect x="336" y="143" width="120" height="12" rx="6" fill="#2a2a28"/>
+          <!-- URL text mock -->
+          <rect x="342" y="147" width="80" height="4" rx="2" fill="#555"/>
+          <!-- Hero section inside browser -->
+          <rect x="278" y="176" width="194" height="80" rx="8" fill="#132b1e"/>
+          <!-- Name + role mock -->
+          <rect x="292" y="188" width="100" height="10" rx="5" fill="rgba(255,255,255,0.85)"/>
+          <rect x="292" y="204" width="70" height="7" rx="3.5" fill="#2ecc8f"/>
+          <!-- Skill tags -->
+          <rect x="292" y="218" width="40" height="14" rx="7" fill="rgba(46,204,143,0.15)" stroke="#2ecc8f" stroke-width="0.8"/>
+          <rect x="338" y="218" width="36" height="14" rx="7" fill="rgba(46,204,143,0.15)" stroke="#2ecc8f" stroke-width="0.8"/>
+          <rect x="380" y="218" width="42" height="14" rx="7" fill="rgba(46,204,143,0.15)" stroke="#2ecc8f" stroke-width="0.8"/>
+          <!-- Projects grid -->
+          <rect x="278" y="264" width="92" height="64" rx="8" fill="#1a1a18" stroke="#2a2a28" stroke-width="1"/>
+          <rect x="284" y="272" width="60" height="5" rx="2.5" fill="#2ecc8f"/>
+          <rect x="284" y="282" width="78" height="4" rx="2" fill="#333"/>
+          <rect x="284" y="290" width="60" height="4" rx="2" fill="#333"/>
+          <rect x="284" y="298" width="50" height="4" rx="2" fill="#333"/>
+          <rect x="284" y="308" width="70" height="14" rx="7" fill="#2ecc8f"/>
+          <rect x="378" y="264" width="94" height="64" rx="8" fill="#1a1a18" stroke="#2a2a28" stroke-width="1"/>
+          <rect x="384" y="272" width="55" height="5" rx="2.5" fill="#f5a623"/>
+          <rect x="384" y="282" width="78" height="4" rx="2" fill="#333"/>
+          <rect x="384" y="290" width="55" height="4" rx="2" fill="#333"/>
+          <rect x="384" y="298" width="65" height="4" rx="2" fill="#333"/>
+          <rect x="384" y="308" width="70" height="14" rx="7" fill="#2a2a28"/>
+          <!-- Contact strip -->
+          <rect x="278" y="336" width="194" height="50" rx="8" fill="#1a1a18"/>
+          <rect x="290" y="348" width="110" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="290" y="360" width="80" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+          <rect x="402" y="345" width="58" height="28" rx="14" fill="#2ecc8f"/>
+          <rect x="413" y="356" width="36" height="5" rx="2.5" fill="#0c0c0b"/>
+        </g>
+
+        <!-- ── FLOATING BADGES ── -->
+        <!-- ATS badge top-left -->
+        <g transform="translate(20, 100)" class="hero-float-1">
+          <rect width="148" height="40" rx="20" fill="white" stroke="#e2ddd6" stroke-width="1.5" filter="url(#shadow3)"/>
+          <circle cx="22" cy="20" r="10" fill="#e8f9f1"/>
+          <path d="M17 20l3 3 5-5" stroke="#1fa86e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="38" y="13" width="56" height="6" rx="3" fill="#0c0c0b"/>
+          <rect x="38" y="23" width="80" height="5" rx="2.5" fill="#e2ddd6"/>
+        </g>
+
+        <!-- Shortlisted badge bottom-right -->
+        <g transform="translate(360, 390)" class="hero-float-2">
+          <rect width="158" height="40" rx="20" fill="#0c0c0b" filter="url(#shadow3)"/>
+          <circle cx="22" cy="20" r="10" fill="#2ecc8f"/>
+          <path d="M17 20l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="38" y="13" width="80" height="6" rx="3" fill="white"/>
+          <rect x="38" y="23" width="60" height="5" rx="2.5" fill="#333"/>
+        </g>
+
+        <!-- Stat bubble -->
+        <g transform="translate(440, 60)" class="hero-float-3">
+          <rect width="90" height="72" rx="16" fill="white" stroke="#e2ddd6" stroke-width="1.5" filter="url(#shadow3)"/>
+          <text x="45" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1fa86e">96</text>
+          <text x="45" y="50" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9b9690">ATS Score</text>
+          <rect x="16" y="56" width="58" height="4" rx="2" fill="#2ecc8f"/>
+          <rect x="16" y="56" width="56" height="4" rx="2" fill="#2ecc8f"/>
+        </g>
+
+        <!-- Arrow connector doodle -->
+        <path d="M240 250 C255 235 265 255 280 240" stroke="#2ecc8f" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="280" cy="240" r="4" fill="#2ecc8f" opacity="0.6"/>
+
+        <!-- Small star sparkles -->
+        <g opacity="0.5">
+          <path d="M420 310 l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z" fill="#2ecc8f"/>
+          <path d="M80 320 l1.5 -4.5 1.5 4.5 4.5 1.5 -4.5 1.5 -1.5 4.5 -1.5 -4.5 -4.5 -1.5z" fill="#f5a623"/>
+          <path d="M350 120 l1 -3 1 3 3 1 -3 1 -1 3 -1 -3 -3 -1z" fill="#2ecc8f"/>
+        </g>
+
+        <!-- SVG filter definitions -->
+        <defs>
+          <filter id="shadow1" x="-10%" y="-10%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0c0c0b" flood-opacity="0.12"/>
+          </filter>
+          <filter id="shadow2" x="-10%" y="-10%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#0c0c0b" flood-opacity="0.18"/>
+          </filter>
+          <filter id="shadow3" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0c0c0b" flood-opacity="0.1"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="tick-item"><strong>75%</strong> of resumes filtered before a human reads them</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>6 seconds</strong> average recruiter scan time</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item">Portfolios get <strong>3× more</strong> recruiter attention than resumes alone</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>Most freshers</strong> lose opportunities to presentation — not skill</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item">Your first job shapes your <strong>next five</strong></span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>Clarity</strong> is the rarest thing in a resume pile</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>75%</strong> of resumes filtered before a human reads them</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>6 seconds</strong> average recruiter scan time</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item">Portfolios get <strong>3× more</strong> recruiter attention than resumes alone</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>Most freshers</strong> lose opportunities to presentation — not skill</span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item">Your first job shapes your <strong>next five</strong></span>
+    <span class="tick-sep">◆</span>
+    <span class="tick-item"><strong>Clarity</strong> is the rarest thing in a resume pile</span>
+    <span class="tick-sep">◆</span>
+  </div>
+</div>
+
+<!-- WHY RESUME MATTERS -->
+<section class="sec why-resume" id="why-matters">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">Why it matters</div>
+      <h2 class="sec-h">The invisible interview<br>happens <em>before you arrive.</em></h2>
+      <p class="sec-p" style="color:#888">Your resume and portfolio are working — or failing — on your behalf right now. Here is what the data says about why this matters more than most students realise.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="why-stat">7s</div>
+        <h3>The 7-Second Verdict</h3>
+        <p>Research shows recruiters spend an average of 6–7 seconds scanning a resume before deciding whether to continue. That's not enough time to read — it's only enough time to notice. Optimized structure makes those seconds count.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <div class="why-stat">75%</div>
+        <h3>ATS Filters First</h3>
+        <p>75% of resumes are automatically rejected by Applicant Tracking Systems before any human sees them. Not because the candidate was weak — because the document wasn't formatted to pass. We fix that.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <div class="why-stat">1st</div>
+        <h3>Your First Job Defines Your Story</h3>
+        <p>The first role shapes your LinkedIn profile, your reference network, and the story you tell for the next five years. Getting it right isn't just about one job — it's about the trajectory that follows.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="why-stat">3×</div>
+        <h3>Portfolio = Visible Proof</h3>
+        <p>Candidates with portfolios receive 3× more recruiter engagement. In a world where everyone claims skills on a resume, a portfolio shows them. For designers, developers, MBAs and analysts — it's no longer optional.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-5">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="why-stat">↑</div>
+        <h3>Clarity Is the Competitive Edge</h3>
+        <p>Most resumes are dense, unfocused, or formatted for the wrong audience. When your resume is clear, recruiters don't have to work to understand your value — and the ones who don't make them work are the ones who get called.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ecf8e" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="why-stat">∞</div>
+        <h3>The Compounding Effect</h3>
+        <p>A strong resume gets you the interview. A strong portfolio builds credibility before you speak. Together they create a compounding impression — one that positions you as someone who takes their career seriously, even as a fresher.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUITER SIMULATION -->
+<section class="sec importance-sec">
+  <div class="sec-inner">
+    <div class="importance-grid">
+      <div class="imp-text reveal">
+        <div class="sec-label">The recruiter's reality</div>
+        <h2 class="sec-h">200 resumes.<br>One afternoon.<br><em>7 seconds each.</em></h2>
+        <p class="sec-p">Recruiters aren't being unfair — they're overwhelmed. A single job post can receive hundreds of applications. They're scanning for reasons to shortlist, not reasons to reject. An optimized resume gives them one fast, clear reason to say yes.</p>
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:.9rem">
+          <div style="display:flex;align-items:flex-start;gap:.9rem">
+            <div style="width:2px;background:var(--mint);height:48px;border-radius:2px;flex-shrink:0;margin-top:4px"></div>
+            <div>
+              <div style="font-family:var(--display);font-size:.9rem;font-weight:700;margin-bottom:.3rem">Without optimization</div>
+              <div style="font-size:.85rem;color:#888;line-height:1.6">Generic format, dense text, weak bullets — skipped in under 5 seconds.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.9rem">
+            <div style="width:2px;background:var(--mint-dark);height:48px;border-radius:2px;flex-shrink:0;margin-top:4px"></div>
+            <div>
+              <div style="font-family:var(--display);font-size:.9rem;font-weight:700;margin-bottom:.3rem">With ProfileMint</div>
+              <div style="font-size:.85rem;color:#888;line-height:1.6">Clear structure, impact-led bullets, ATS-ready — earns the read and the call.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="imp-visual reveal reveal-delay-2">
+        <div class="imp-float imp-float-tl">⏱ 7s decision window <span class="mint">per resume</span></div>
+        <div class="recruiter-sim">
+          <div class="rs-top">
+            <div class="rs-title">Recruiter View</div>
+            <div class="rs-timer">00:07</div>
+          </div>
+          <div class="rs-progress"><div class="rs-progress-bar"></div></div>
+          <div class="rs-stack">
+            <div class="rs-resume rejected">
+              <div class="rsr-left">
+                <div class="rsr-dot"></div>
+                <div class="rsr-lines">
+                  <div class="rsr-line dark"></div>
+                  <div class="rsr-line light"></div>
+                </div>
+              </div>
+              <div class="rsr-status status-skip">Skipped</div>
+            </div>
+            <div class="rs-resume rejected">
+              <div class="rsr-left">
+                <div class="rsr-dot"></div>
+                <div class="rsr-lines">
+                  <div class="rsr-line dark"></div>
+                  <div class="rsr-line light"></div>
+                </div>
+              </div>
+              <div class="rsr-status status-skip">Skipped</div>
+            </div>
+            <div class="rs-resume active">
+              <div class="rsr-left">
+                <div class="rsr-dot" style="background:linear-gradient(135deg,#2ecc8f,#1fa86e)"></div>
+                <div class="rsr-lines">
+                  <div class="rsr-line" style="background:#555;width:85px"></div>
+                  <div class="rsr-line" style="background:#3a3a38;width:60px"></div>
+                </div>
+              </div>
+              <div class="rsr-status status-read">✓ Shortlisted</div>
+            </div>
+            <div class="rs-resume rejected">
+              <div class="rsr-left">
+                <div class="rsr-dot"></div>
+                <div class="rsr-lines">
+                  <div class="rsr-line dark"></div>
+                  <div class="rsr-line light"></div>
+                </div>
+              </div>
+              <div class="rsr-status status-skip">Skipped</div>
+            </div>
+          </div>
+        </div>
+        <div class="imp-float imp-float-br">ProfileMint resume — <span class="mint">always the one that reads.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section class="sec portfolio-sec" id="portfolio">
+  <div class="sec-inner">
+    <div class="portfolio-why">
+      <div class="port-text reveal">
+        <div class="sec-label">Why a portfolio changes everything</div>
+        <h2 class="sec-h">A resume tells.<br>A portfolio <em>proves.</em></h2>
+        <p class="sec-p">In 2025, telling a recruiter you can do something is table stakes. Showing them changes the conversation entirely. A portfolio isn't just for designers — it's for anyone who wants to stand out in a crowded inbox.</p>
+        <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1.1rem">
+          <div style="display:flex;align-items:flex-start;gap:1rem">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--mint-pale);border:1.5px solid rgba(46,204,143,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--display);font-size:.9rem;font-weight:700;margin-bottom:.3rem">Instant credibility before the interview</div>
+              <div style="font-size:.85rem;color:#888;line-height:1.6">Recruiters who visit your portfolio arrive at the interview already convinced. The conversation shifts from "can you do this?" to "when can you start?"</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--mint-pale);border:1.5px solid rgba(46,204,143,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--display);font-size:.9rem;font-weight:700;margin-bottom:.3rem">Works while you sleep</div>
+              <div style="font-size:.85rem;color:#888;line-height:1.6">A live portfolio is always available — recruiters, collaborators, and opportunities find you 24/7. It compounds over time.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--mint-pale);border:1.5px solid rgba(46,204,143,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1fa86e" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--display);font-size:.9rem;font-weight:700;margin-bottom:.3rem">Not just for designers</div>
+              <div style="font-size:.85rem;color:#888;line-height:1.6">MBA students can showcase case studies. CS students can show projects. Marketing students can show campaigns. Anyone with work worth seeing should have a portfolio.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="port-visual reveal reveal-delay-2">
+        <div class="port-browser">
+          <div class="port-bar">
+            <div class="port-dots">
+              <div class="port-dot" style="background:#ff5f57"></div>
+              <div class="port-dot" style="background:#febc2e"></div>
+              <div class="port-dot" style="background:#28c840"></div>
+            </div>
+            <div class="port-url"><span class="port-url-text">profilemint.in/portfolio/yourname</span></div>
+          </div>
+          <div class="port-screen">
+            <div class="port-hero-mock">
+              <div class="port-name-mock">Priya Sharma</div>
+              <div class="port-role-mock">Product Designer · MBA Student</div>
+              <div class="port-skills">
+                <span class="port-skill-tag">UX Research</span>
+                <span class="port-skill-tag">Figma</span>
+                <span class="port-skill-tag">Strategy</span>
+                <span class="port-skill-tag">Branding</span>
+              </div>
+            </div>
+            <div class="port-projects">
+              <div class="port-proj">
+                <div class="port-proj-bar accent"></div>
+                <div class="port-proj-line"></div>
+                <div class="port-proj-line short"></div>
+              </div>
+              <div class="port-proj">
+                <div class="port-proj-bar" style="background:#3ecf8e;width:45%"></div>
+                <div class="port-proj-line"></div>
+                <div class="port-proj-line short"></div>
+              </div>
+              <div class="port-proj">
+                <div class="port-proj-bar" style="background:#f5a623;width:70%"></div>
+                <div class="port-proj-line"></div>
+                <div class="port-proj-line short"></div>
+              </div>
+              <div class="port-proj">
+                <div class="port-proj-bar" style="background:#2ecc8f;width:55%"></div>
+                <div class="port-proj-line"></div>
+                <div class="port-proj-line short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="port-float-stat">
+          <div class="pfs-num">3×</div>
+          <div class="pfs-label">more recruiter engagement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="sec problem-sec">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">What's holding you back</div>
+      <h2 class="sec-h">The problems most<br>freshers don't know they have.</h2>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card reveal reveal-delay-1">
+        <div class="prob-num">01</div>
+        <h3>Sending into silence</h3>
+        <p>Dozens of applications, zero responses. The resume looks fine to you — but recruiters are skipping it in seconds. The issue isn't your profile, it's the packaging.</p>
+      </div>
+      <div class="prob-card reveal reveal-delay-2">
+        <div class="prob-num">02</div>
+        <h3>The template trap</h3>
+        <p>When everyone uses the same Canva or MS Word format, nothing stands out. A generic template signals generic effort — even when the experience isn't generic at all.</p>
+      </div>
+      <div class="prob-card reveal reveal-delay-3">
+        <div class="prob-num">03</div>
+        <h3>The ATS wall</h3>
+        <p>Most companies screen resumes with software before a human ever sees them. Wrong keywords, wrong formatting, wrong file structure — and you're out before you're even in.</p>
+      </div>
+      <div class="prob-card reveal reveal-delay-4">
+        <div class="prob-num">04</div>
+        <h3>Duties, not impact</h3>
+        <p>"Responsible for social media management" tells a recruiter nothing. "Grew Instagram engagement by 40% in 3 months" tells them everything. Most freshers never learn this difference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT STRIP -->
+<div class="insight-strip">
+  <div class="is-bg"></div>
+  <div class="is-inner">
+    <blockquote class="is-quote">"Most resumes don't fail because of lack of skills. They fail because of how they're presented. Your resume is doing a job interview before you are."</blockquote>
+    <div class="is-attr">— The ProfileMint Philosophy</div>
+  </div>
+</div>
+
+<!-- STATS ROW -->
+<div class="stats-row">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-num">7s</div>
+      <div class="stat-desc">Average recruiter<br>scan time per resume</div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="stat-num">75%</div>
+      <div class="stat-desc">Resumes rejected by<br>ATS before human review</div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="stat-num">3×</div>
+      <div class="stat-desc">More callbacks with<br>structured, optimized resumes</div>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <div class="stat-num">48h</div>
+      <div class="stat-desc">Our typical<br>delivery turnaround</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec services-sec" id="services">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">Our services</div>
+      <h2 class="sec-h">Everything you need<br>to show up <em>with confidence.</em></h2>
+    </div>
+    <div class="serv-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:780px">
+      <div class="serv-card reveal reveal-delay-1" style="padding:3rem 2.4rem">
+        <div class="serv-card-icon" style="background:#f0ede6;width:60px;height:60px;border-radius:16px">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0c0c0b" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </div>
+        <h3>Resume Writing</h3>
+        <p>We craft your resume from scratch — ATS-optimized, impact-led, and built around your target role. You share your experience; we translate it into language that gets noticed and remembered.</p>
+        <div class="serv-tag">Most Popular</div>
+      </div>
+      <div class="serv-card serv-featured reveal reveal-delay-2" style="padding:3rem 2.4rem">
+        <div class="serv-ribbon">New</div>
+        <div class="serv-card-icon" style="width:60px;height:60px;border-radius:16px">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Portfolio Site</h3>
+        <p>A clean, professional portfolio website that works as your 24/7 personal showcase. Projects, skills, and a contact form — built to impress the moment a recruiter or client lands on it.</p>
+        <div class="serv-tag">High Impact</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec process-sec" id="process">
+  <div class="sec-inner">
+    <div style="text-align:center;max-width:580px;margin:0 auto 1rem" class="reveal">
+      <div class="sec-label" style="text-align:center">How it works</div>
+      <h2 class="sec-h">Simple, personal,<br>and done right.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="ps-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div class="ps-num-overlay">1</div>
+        </div>
+        <h4>You reach out</h4>
+        <p>Fill the form. We review your details and call you within 24 hours.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="ps-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <div class="ps-num-overlay">2</div>
+        </div>
+        <h4>We understand you</h4>
+        <p>A brief conversation about your background, goals, and the roles you're targeting.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="ps-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div class="ps-num-overlay">3</div>
+        </div>
+        <h4>We build it</h4>
+        <p>Resume, portfolio, or both — crafted with precision, delivered within 48 hours.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="ps-circle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <div class="ps-num-overlay">4</div>
+        </div>
+        <h4>You apply with confidence</h4>
+        <p>Review, request tweaks, then go — with a resume that actually represents you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="sec diff-sec">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">Why ProfileMint</div>
+      <h2 class="sec-h">We think like<br>the person <em>hiring you.</em></h2>
+      <p class="sec-p">Not a template tool. Not a mass-production agency. A focused studio that understands what hiring teams actually respond to — and builds backwards from that.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-item reveal reveal-delay-1">
+        <div class="diff-n">01</div>
+        <h4>Hiring-first thinking</h4>
+        <p>Every word, structure choice, and format decision is made with the recruiter's eye — not the candidate's ego.</p>
+      </div>
+      <div class="diff-item reveal reveal-delay-2">
+        <div class="diff-n">02</div>
+        <h4>Clarity above all</h4>
+        <p>We strip clutter, tighten language, and surface what actually matters. What's left is clean, confident, and impossible to ignore.</p>
+      </div>
+      <div class="diff-item reveal reveal-delay-3">
+        <div class="diff-n">03</div>
+        <h4>Built for freshers</h4>
+        <p>We know how to make limited experience look compelling — honestly, without exaggeration or cliché.</p>
+      </div>
+      <div class="diff-item reveal reveal-delay-4">
+        <div class="diff-n">04</div>
+        <h4>Personal, not automated</h4>
+        <p>Every output is crafted for your specific profile and goals. No AI filler. No generic templates. Just careful, human work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="form-sec" id="contact">
+  <div class="form-glow"></div>
+  <div class="form-grid">
+    <div class="form-left reveal">
+      <div class="sec-label">Get started</div>
+      <h2 class="sec-h" style="color:var(--paper)">Most profiles have<br>one fixable flaw.<br><em>Want to know yours?</em></h2>
+      <p class="sec-p">Fill in your details. Our team personally reviews every submission and reaches out to tell you exactly what's holding your profile back — and what we can do about it. Takes 30 seconds.</p>
+      <div class="form-promise">
+        <div class="fp-item">
+          <div class="fp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          We review every submission personally — no bots
+        </div>
+        <div class="fp-item">
+          <div class="fp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          Honest, no-pressure response — just real insight
+        </div>
+        <div class="fp-item">
+          <div class="fp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Your details stay private and are never shared
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="contact-form" id="formContainer">
+        <form id="enquiryForm">
+          <div class="form-row">
+            <label for="name">Full Name</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="e.g. Priya Sharma" required>
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone Number</label>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-row">
+            <label for="service">What are you looking for?</label>
+            <select class="form-input form-select" id="service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="Resume Writing">Resume Writing</option>
+              <option value="Portfolio Site">Portfolio Site</option>
+              <option value="Resume + Portfolio Bundle">Resume + Portfolio — Both</option>
+              <option value="Not Sure Yet">Not Sure Yet — Just Exploring</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="status">Your current status</label>
+            <select class="form-input form-select" id="status" name="status" required>
+              <option value="" disabled selected>Select your status</option>
+              <option value="College Student">College Student</option>
+              <option value="MBA Student">MBA Student</option>
+              <option value="Recent Graduate">Recent Graduate (0–1 year)</option>
+              <option value="Working Professional">Working Professional (1–3 years)</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Request a Callback
+          </button>
+          <p class="form-note">We typically call within 24 hours during weekdays.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="fs-icon">✅</div>
+          <div class="fs-title">We've got your details!</div>
+          <p class="fs-sub">Expect a call from the ProfileMint team within 24 hours. In the meantime, feel free to explore what we offer above.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-brand" href="#">
+    <div class="footer-mark">
+      <svg viewBox="0 0 18 18" fill="none">
+        <path d="M3 14L7.5 4L12 10L14.5 7L17 14" stroke="#3ecf8e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="footer-name">Profile<span>Mint</span></span>
+  </a>
+  <div class="footer-mid">
+    Resume &amp; Portfolio Studio for Students and Freshers<br>
+    <span style="color:#2a2a28">Helping you show up with confidence — one profile at a time.</span>
+  </div>
+  <div class="footer-right">© 2025 ProfileMint. All rights reserved.</div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+(function animRing(){rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,input,select,.serv-card,.why-card,.prob-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cursor.style.width='18px'; cursor.style.height='18px'; ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='0.3'; });
+  el.addEventListener('mouseleave',()=>{ cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='38px'; ring.style.height='38px'; ring.style.opacity='0.5'; });
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.1 });
+revealEls.forEach(el => obs.observe(el));
+
+// ─── FORM SUBMISSION — Google Sheets (Apps Script) ───────────────────────────
+// HOW TO SET UP (one-time, free):
+// 1. Go to sheets.google.com → create a new spreadsheet → name it "ProfileMint Leads"
+// 2. Click Extensions → Apps Script → paste the code below → save (Ctrl+S)
+// 3. Click Deploy → New Deployment → Type: Web App
+//    → Execute as: Me  |  Who has access: Anyone → Deploy → Copy the URL
+// 4. Replace 'YOUR_APPS_SCRIPT_URL' below with that URL
+//
+// Apps Script code to paste:
+// ─────────────────────────────────────────────────────────────────────────────
+// function doGet(e) {
+//   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+//   if (!sheet.getLastRow()) {
+//     sheet.appendRow(['Timestamp','Name','Phone','Service','Status']);
+//   }
+//   sheet.appendRow([
+//     new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}),
+//     e.parameter.name   || '',
+//     e.parameter.phone  || '',
+//     e.parameter.service|| '',
+//     e.parameter.status || ''
+//   ]);
+//   return ContentService
+//     .createTextOutput(JSON.stringify({result:'ok'}))
+//     .setMimeType(ContentService.MimeType.JSON);
+// }
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzgLoIEFfijyuPXN47nYFP-QXpgp42TEfU2wgISmNomzeR8QyXHhCMaOiKtjAZv2rmcXg/exec'; // ← paste your deployed web app URL here
+
+const form = document.getElementById('enquiryForm');
+const success = document.getElementById('formSuccess');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('.submit-btn');
+  const originalHTML = btn.innerHTML;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const params = new URLSearchParams({
+      name:    form.name.value.trim(),
+      phone:   form.phone.value.trim(),
+      service: form.service.value,
+      status:  form.status.value
+    });
+
+    // no-cors is needed to avoid CORS preflight; Apps Script still receives & saves the data
+    await fetch(SHEET_URL + '?' + params.toString(), { mode: 'no-cors' });
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+  } catch {
+    btn.innerHTML = originalHTML;
+    btn.disabled = false;
+    alert('Something went wrong. Please check your internet connection and try again.');
+  }
+});
+
+// Recruiter sim - cycle through states
+const resumes = document.querySelectorAll('.rs-resume');
+let idx = 2;
+setInterval(() => {
+  resumes.forEach(r => { r.classList.remove('active'); r.classList.add('rejected'); });
+  idx = (idx + 1) % resumes.length;
+  resumes[idx].classList.remove('rejected');
+  resumes[idx].classList.add('active');
+}, 4000);
+</script>
+</body>
+</html>
